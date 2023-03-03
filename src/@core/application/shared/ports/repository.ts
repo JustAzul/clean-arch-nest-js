@@ -7,12 +7,12 @@ import { PickTypeOfID } from 'src/@core/domain/shared/types/pick-type-of-id.type
 
 @Injectable()
 export abstract class Repository<Entity extends DefaultEntity> {
-  abstract createOne(entity: Entity): Promise<Entity>;
-  abstract createMany(entities: Entity[]): Promise<Entity[]>;
+  abstract createOne(entity: OmitID<Entity>): Promise<Entity>;
+  abstract createMany(entities: OmitID<Entity>[]): Promise<Entity[]>;
 
   abstract deleteOne(
     findCondition: Partial<
-      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
   ): Promise<Entity>;
 
@@ -20,7 +20,7 @@ export abstract class Repository<Entity extends DefaultEntity> {
 
   abstract deleteMany(
     findCondition: Partial<
-      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
   ): Promise<number>;
 
@@ -28,7 +28,7 @@ export abstract class Repository<Entity extends DefaultEntity> {
 
   abstract findOne(
     findCondition: Partial<
-      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
   ): Promise<Entity>;
 
@@ -36,7 +36,7 @@ export abstract class Repository<Entity extends DefaultEntity> {
 
   abstract findMany(
     findCondition: Partial<
-      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
   ): Promise<Entity[]>;
 
@@ -46,7 +46,7 @@ export abstract class Repository<Entity extends DefaultEntity> {
 
   abstract updateOne(
     findCondition: Partial<
-      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
     data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
   ): Entity;
@@ -58,7 +58,7 @@ export abstract class Repository<Entity extends DefaultEntity> {
 
   abstract updateMany(
     findCondition: Partial<
-      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
     data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
   ): Promise<Entity[]>;
