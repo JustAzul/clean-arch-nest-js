@@ -1,5 +1,7 @@
+import { ExcludeFunctionMethods } from 'src/@core/domain/shared/types/exclude-function-methods.type';
 import { Injectable } from '@nestjs/common';
-import { WithoutMethods } from 'src/@core/domain/shared/types/without-methods.type';
+import { OmitDatabaseDateKeys } from 'src/@core/domain/shared/types/omit-database-date-keys.type';
+import { OmitID } from 'src/@core/domain/shared/types/omit-id.type';
 
 @Injectable()
 export abstract class Repository<Entity> {
@@ -8,7 +10,7 @@ export abstract class Repository<Entity> {
 
   abstract deleteOne(
     findCondition: Partial<
-      WithoutMethods<Omit<Entity, 'createdAt' | 'updatedAt'>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
     >,
   ): Promise<Entity>;
 
@@ -16,18 +18,18 @@ export abstract class Repository<Entity> {
 
   abstract deleteMany(
     findCondition: Partial<
-      WithoutMethods<Omit<Entity, 'createdAt' | 'updatedAt'>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
     >,
   ): Promise<number>;
 
   abstract deleteManyByIDs(
     ids: any[],
-    data: Partial<WithoutMethods<Entity>>,
+    data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
   ): Promise<number>;
 
   abstract findOne(
     findCondition: Partial<
-      WithoutMethods<Omit<Entity, 'createdAt' | 'updatedAt'>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
     >,
   ): Promise<Entity>;
 
@@ -35,7 +37,7 @@ export abstract class Repository<Entity> {
 
   abstract findMany(
     findCondition: Partial<
-      WithoutMethods<Omit<Entity, 'createdAt' | 'updatedAt'>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
     >,
   ): Promise<Entity[]>;
 
@@ -45,25 +47,25 @@ export abstract class Repository<Entity> {
 
   abstract updateOne(
     findCondition: Partial<
-      WithoutMethods<Omit<Entity, 'createdAt' | 'updatedAt'>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
     >,
-    data: Partial<WithoutMethods<Entity>>,
+    data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
   ): Entity;
 
   abstract updateOneByID(
     id: any,
-    data: Partial<WithoutMethods<Entity>>,
+    data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
   ): Promise<Entity>;
 
   abstract updateMany(
     findCondition: Partial<
-      WithoutMethods<Omit<Entity, 'createdAt' | 'updatedAt'>>
+      ExcludeFunctionMethods<OmitDatabaseDateKeys<Entity>>
     >,
-    data: Partial<WithoutMethods<Entity>>,
+    data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
   ): Promise<Entity[]>;
 
   abstract updateManyByIDs(
     ids: any[],
-    data: Partial<WithoutMethods<Entity>>,
+    data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
   ): Promise<Entity>[];
 }
