@@ -1,4 +1,4 @@
-import { StandardEntity } from './../shared/entities/standard.entity';
+import { DefaultEntity } from '../shared/entities/default.entity';
 
 export type UserEntityConstructor = {
   id: number | bigint;
@@ -7,7 +7,7 @@ export type UserEntityConstructor = {
   updatedAt: Date;
 };
 
-export class UserEntity extends StandardEntity {
+export class UserEntity extends DefaultEntity {
   public readonly id: number;
   public name: string;
   public readonly createdAt: Date;
