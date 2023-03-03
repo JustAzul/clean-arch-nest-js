@@ -9,16 +9,13 @@ export type UserEntityConstructor = {
 
 export class UserEntity extends DefaultEntity {
   public readonly id: number;
-  public name: string;
-  public readonly createdAt: Date;
-  public updatedAt: Date;
 
-  private constructor(props: UserEntityConstructor) {
-    super();
+  public name: string;
+
+  public constructor(props: UserEntityConstructor) {
+    super(props.createdAt, props.updatedAt);
 
     this.id = Number(props.id);
     this.name = props.name;
-    this.createdAt = props.createdAt;
-    this.updatedAt = props.updatedAt;
   }
 }
