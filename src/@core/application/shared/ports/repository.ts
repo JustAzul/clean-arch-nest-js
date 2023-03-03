@@ -17,6 +17,8 @@ export abstract class Repository<Entity> {
   abstract findMany(findCondition: Partial<Entity>): Promise<Entity[]>;
   abstract findManyByIDs(ids: any[]): Promise<Entity[]>;
 
+  abstract findAll(): Promise<Entity[]>;
+
   abstract updateOne(
     findCondition: Partial<Entity>,
     data: Partial<Entity>,
