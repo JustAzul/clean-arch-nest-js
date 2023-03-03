@@ -7,7 +7,7 @@ import { PickTypeOfID } from 'src/@core/domain/shared/types/pick-type-of-id.type
 
 @Injectable()
 export abstract class Repository<Entity extends DefaultEntity> {
-  abstract createOne(UserEntity: Entity): Promise<Entity>;
+  abstract createOne(entity: Entity): Promise<Entity>;
   abstract createMany(entities: Entity[]): Promise<Entity[]>;
 
   abstract deleteOne(
