@@ -1,14 +1,23 @@
+import {
+  OmitDatabaseDateKeys,
+  OmitEntityCreatedDate,
+} from 'src/@core/domain/shared/types/omit-entity-dates.type';
+
 import { DefaultEntity } from 'src/@core/domain/shared/entities/default.entity';
 import { ExcludeFunctionMethods } from 'src/@core/domain/shared/types/exclude-function-methods.type';
 import { Injectable } from '@nestjs/common';
-import { OmitDatabaseDateKeys } from 'src/@core/domain/shared/types/omit-database-date-keys.type';
 import { OmitID } from 'src/@core/domain/shared/types/omit-id.type';
 import { PickTypeOfID } from 'src/@core/domain/shared/types/pick-type-of-id.type';
 
 @Injectable()
 export abstract class Repository<Entity extends DefaultEntity> {
-  abstract createOne(entity: OmitID<Entity>): Promise<Entity>;
-  abstract createMany(entities: OmitID<Entity>[]): Promise<Entity[]>;
+  abstract createOne(
+    entity: OmitDatabaseDateKeys<OmitID<Entity>>,
+  ): Promise<Entity>;
+
+  abstract createMany(
+    entities: OmitDatabaseDateKeys<OmitID<Entity>>[],
+  ): Promise<Entity[]>;
 
   abstract deleteOne(
     findCondition: Partial<
@@ -48,23 +57,31 @@ export abstract class Repository<Entity extends DefaultEntity> {
     findCondition: Partial<
       ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
-    data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
+    data: Partial<
+      ExcludeFunctionMethods<OmitID<OmitEntityCreatedDate<Entity>>>
+    >,
   ): Entity;
 
   abstract updateOneByID(
     id: PickTypeOfID<Entity>,
-    data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
+    data: Partial<
+      ExcludeFunctionMethods<OmitID<OmitEntityCreatedDate<Entity>>>
+    >,
   ): Promise<Entity>;
 
   abstract updateMany(
     findCondition: Partial<
       ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
-    data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
+    data: Partial<
+      ExcludeFunctionMethods<OmitID<OmitEntityCreatedDate<Entity>>>
+    >,
   ): Promise<Entity[]>;
 
   abstract updateManyByIDs(
     ids: PickTypeOfID<Entity>[],
-    data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
+    data: Partial<
+      ExcludeFunctionMethods<OmitID<OmitEntityCreatedDate<Entity>>>
+    >,
   ): Promise<Entity>[];
 }
