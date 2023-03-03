@@ -22,10 +22,7 @@ export abstract class Repository<Entity> {
     >,
   ): Promise<number>;
 
-  abstract deleteManyByIDs(
-    ids: any[],
-    data: Partial<ExcludeFunctionMethods<OmitID<Entity>>>,
-  ): Promise<number>;
+  abstract deleteManyByIDs(ids: any[]): Promise<number>;
 
   abstract findOne(
     findCondition: Partial<
