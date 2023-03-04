@@ -10,7 +10,7 @@ import { OmitID } from 'src/@core/domain/shared/types/omit-id.type';
 import { PickTypeOfID } from 'src/@core/domain/shared/types/pick-type-of-id.type';
 
 @Injectable()
-export abstract class Repository<Entity extends DefaultEntity> {
+export abstract class IRepository<Entity extends DefaultEntity> {
   abstract createOne(
     entity: OmitDatabaseDateKeys<OmitID<Entity>>,
   ): Promise<Entity>;

@@ -1,6 +1,6 @@
+import { IRepository } from '../shared/ports/repository';
 import { Injectable } from '@nestjs/common';
-import { Repository } from '../shared/ports/repository';
 import { UserEntity } from '../../domain/entities/user.entity';
 
 @Injectable()
-export abstract class UserRepository extends Repository<UserEntity> {}
+export abstract class IUserRepository extends IRepository<UserEntity> {}

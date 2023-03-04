@@ -1,13 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
 
+import { IUserRepository } from '../ports/user.repository';
 import { UserEntity } from 'src/@core/domain/entities/user.entity';
-import { UserRepository } from '../ports/user.repository';
 
 @Injectable()
 export class UsersUseCase {
   private readonly logger: Logger = new Logger(UsersUseCase.name);
 
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(private readonly userRepository: IUserRepository) {}
 
   public async getAllUsers(): Promise<UserEntity[]> {
     this.logger.debug('Getting all users');
