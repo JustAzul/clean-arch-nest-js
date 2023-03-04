@@ -1,7 +1,9 @@
+import { AppController } from './@core/adapters/controllers/app.controller';
+import { HelloWorldUseCase } from './@core/application/use-cases/hello-world.usecase';
 import { Module } from '@nestjs/common';
-import { RoutesModule } from './routes/routes.module';
 
 @Module({
-  imports: [RoutesModule],
+  controllers: [AppController],
+  providers: [HelloWorldUseCase],
 })
 export class AppModule {}
