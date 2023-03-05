@@ -3,7 +3,15 @@ import { instanceToPlain } from 'class-transformer';
 export const DefaultEntityCreatedDateName = 'createdAt';
 export const DefaultEntityUpdatedDateName = 'updatedAt';
 
-export class DefaultEntity {
+export interface IEntity {
+  id?: any;
+  [DefaultEntityCreatedDateName]: Date;
+  [DefaultEntityUpdatedDateName]: Date;
+
+  serialize(): this;
+}
+
+export class DefaultEntity implements IEntity {
   public readonly id?: any;
   public readonly [DefaultEntityCreatedDateName]: Date;
   public [DefaultEntityUpdatedDateName]: Date;
@@ -13,7 +21,7 @@ export class DefaultEntity {
     this[DefaultEntityUpdatedDateName] = updatedAt || new Date();
   }
 
-  public serialize() {
+  public serialize(): this {
     return instanceToPlain(this) as typeof this;
   }
 }
