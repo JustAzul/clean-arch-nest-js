@@ -8,7 +8,7 @@ export class AppController {
 
   @Get()
   public async getHello(): Promise<string> {
-    const result: string = this.helloWorldUseCase.getHello();
+    const result: string = this.helloWorldUseCase.execute();
     return result;
   }
 }

@@ -8,50 +8,51 @@ import { ExcludeFunctionMethods } from 'src/@core/domain/shared/types/exclude-fu
 import { Injectable } from '@nestjs/common';
 import { OmitID } from 'src/@core/domain/shared/types/omit-id.type';
 import { PickTypeOfID } from 'src/@core/domain/shared/types/pick-type-of-id.type';
+import { SyncOrAsync } from 'src/@core/domain/shared/types/sync-or-async';
 
 @Injectable()
 export abstract class IRepository<Entity extends DefaultEntity> {
   abstract createOne(
     entity: OmitDatabaseDateKeys<OmitID<Entity>>,
-  ): Promise<Entity>;
+  ): SyncOrAsync<Entity>;
 
   abstract createMany(
     entities: OmitDatabaseDateKeys<OmitID<Entity>>[],
-  ): Promise<Entity[]>;
+  ): SyncOrAsync<Entity[]>;
 
   abstract deleteOne(
     findCondition: Partial<
       ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
-  ): Promise<Entity>;
+  ): SyncOrAsync<Entity>;
 
-  abstract deleteOneByID(id: PickTypeOfID<Entity>): Promise<Entity>;
+  abstract deleteOneByID(id: PickTypeOfID<Entity>): SyncOrAsync<Entity>;
 
   abstract deleteMany(
     findCondition: Partial<
       ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
-  ): Promise<number>;
+  ): SyncOrAsync<number>;
 
-  abstract deleteManyByIDs(ids: PickTypeOfID<Entity>[]): Promise<number>;
+  abstract deleteManyByIDs(ids: PickTypeOfID<Entity>[]): SyncOrAsync<number>;
 
   abstract findOne(
     findCondition: Partial<
       ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
-  ): Promise<Entity>;
+  ): SyncOrAsync<Entity>;
 
-  abstract findOneByID(id: PickTypeOfID<Entity>): Promise<Entity>;
+  abstract findOneByID(id: PickTypeOfID<Entity>): SyncOrAsync<Entity>;
 
   abstract findMany(
     findCondition: Partial<
       ExcludeFunctionMethods<OmitDatabaseDateKeys<OmitID<Entity>>>
     >,
-  ): Promise<Entity[]>;
+  ): SyncOrAsync<Entity[]>;
 
-  abstract findManyByIDs(ids: PickTypeOfID<Entity>[]): Promise<Entity[]>;
+  abstract findManyByIDs(ids: PickTypeOfID<Entity>[]): SyncOrAsync<Entity[]>;
 
-  abstract findAll(): Promise<Entity[]>;
+  abstract findAll(): SyncOrAsync<Entity[]>;
 
   abstract updateOne(
     findCondition: Partial<
@@ -67,7 +68,7 @@ export abstract class IRepository<Entity extends DefaultEntity> {
     data: Partial<
       ExcludeFunctionMethods<OmitID<OmitEntityCreatedDate<Entity>>>
     >,
-  ): Promise<Entity>;
+  ): SyncOrAsync<Entity>;
 
   abstract updateMany(
     findCondition: Partial<
@@ -76,12 +77,12 @@ export abstract class IRepository<Entity extends DefaultEntity> {
     data: Partial<
       ExcludeFunctionMethods<OmitID<OmitEntityCreatedDate<Entity>>>
     >,
-  ): Promise<Entity[]>;
+  ): SyncOrAsync<Entity[]>;
 
   abstract updateManyByIDs(
     ids: PickTypeOfID<Entity>[],
     data: Partial<
       ExcludeFunctionMethods<OmitID<OmitEntityCreatedDate<Entity>>>
     >,
-  ): Promise<Entity>[];
+  ): SyncOrAsync<Entity>[];
 }
