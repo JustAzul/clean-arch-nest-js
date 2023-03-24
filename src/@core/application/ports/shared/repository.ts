@@ -1,14 +1,14 @@
 import {
   OmitDatabaseDateKeys,
   OmitEntityCreatedDate,
-} from 'src/@core/domain/shared/types/omit-entity-dates.type';
+} from 'src/@core/domain/types/omit-entity-dates.type';
 
-import { DefaultEntity } from 'src/@core/domain/shared/entities/default.entity';
-import { ExcludeFunctionMethods } from 'src/@core/domain/shared/types/exclude-function-methods.type';
+import { DefaultEntity } from 'src/@core/domain/shared/default.entity';
+import { ExcludeFunctionMethods } from 'src/@core/shared/types/exclude-function-methods.type';
 import { Injectable } from '@nestjs/common';
-import { OmitID } from 'src/@core/domain/shared/types/omit-id.type';
-import { PickTypeOfID } from 'src/@core/domain/shared/types/pick-type-of-id.type';
-import { SyncOrAsync } from 'src/@core/domain/shared/types/sync-or-async';
+import { OmitID } from 'src/@core/shared/types/omit-id.type';
+import { PickTypeOfID } from 'src/@core/shared/types/pick-type-of-id.type';
+import { SyncOrAsync } from 'src/@core/shared/types/sync-or-async';
 
 @Injectable()
 export abstract class IRepository<Entity extends DefaultEntity> {
