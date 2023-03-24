@@ -5,12 +5,10 @@ import {
 
 import { DefaultEntity } from 'src/@core/domain/shared/default.entity';
 import { ExcludeFunctionMethods } from 'src/@core/shared/types/exclude-function-methods.type';
-import { Injectable } from '@nestjs/common';
 import { OmitID } from 'src/@core/shared/types/omit-id.type';
 import { PickTypeOfID } from 'src/@core/shared/types/pick-type-of-id.type';
 import { SyncOrAsync } from 'src/@core/shared/types/sync-or-async';
 
-@Injectable()
 export abstract class IRepository<Entity extends DefaultEntity> {
   abstract createOne(
     entity: OmitDatabaseDateKeys<OmitID<Entity>>,
