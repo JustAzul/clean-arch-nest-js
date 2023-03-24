@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { HelloWorldUseCase } from 'src/@core/application/use-cases/hello-world.usecase';
+import { HelloWorldUseCase } from 'src/@core/application/use-cases/hello-world.use-case';
 
 @Controller()
 export class AppController {
