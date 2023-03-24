@@ -1,6 +1,6 @@
 import { AppController } from './@core/adapters/controllers/app.controller';
 import { ConfigModule } from '@nestjs/config';
-import { HelloWorldUseCase } from './@core/application/use-cases/hello-world.usecase';
+import { HelloWorldUseCase } from './@core/application/use-cases/hello-world.use-case';
 import { Module } from '@nestjs/common';
 
 @Module({

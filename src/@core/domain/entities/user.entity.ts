@@ -1,4 +1,4 @@
-import { DefaultEntity } from '../shared/entities/default.entity';
+import { DefaultEntity } from '../shared/default.entity';
 
 export type UserEntityConstructor = {
   id: number | bigint;

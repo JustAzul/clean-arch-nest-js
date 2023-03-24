@@ -2,7 +2,7 @@ import {
   DefaultEntity,
   DefaultEntityCreatedDateName,
   DefaultEntityUpdatedDateName,
-} from '../entities/default.entity';
+} from '../shared/default.entity';
 
 export type DefaultEntityCreatedDateName = keyof Pick<
   DefaultEntity,

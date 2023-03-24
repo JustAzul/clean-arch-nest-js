@@ -1,4 +1,4 @@
-import { SyncOrAsync } from 'src/@core/domain/shared/types/sync-or-async';
+import { SyncOrAsync } from 'src/@core/shared/types/sync-or-async';
 
 export interface IUseCase<Input, Output> {
   execute(): SyncOrAsync<Output>;

@@ -1,4 +1,4 @@
-import { IRepository } from '../shared/ports/repository';
+import { IRepository } from './shared/repository';
 import { Injectable } from '@nestjs/common';
 import { UserEntity } from '../../domain/entities/user.entity';
 
